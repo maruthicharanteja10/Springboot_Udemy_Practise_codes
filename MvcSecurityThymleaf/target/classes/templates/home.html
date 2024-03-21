@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymleaf.com" xlmns:sec="www.thymleaf.com/extras/spring-security">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>IPL Home page</title>
+</head>
+
+<body>
+	<h2>IPL2024 Home Page</h2>
+	<hr>
+	<p>Welcome to IPL2024 updates..!</p>
+	<hr>
+	<p>
+		User :<span sec:authentication="principal.username"></span><br><br>
+		Role(s) :<span sec:authentication="principal.authorities"></span>
+	</p>
+	
+	<!--Add a link to point to /leaders ...this is for the Manager-->
+	<div sec:authorize="hasRole('MANAGER')">
+		<p>
+			<a th:href=" @{/leaders}">Leadership meetings</a>
+			(Only for Manager)
+		</p>
+	</div>
+	<div sec:authorize="hasRole('ADMIN')">
+		<p>
+			<a th:href="@{/systems}">IT Systems Meetings</a>
+			(Only for Admins)
+		</p>
+	</div>
+	<hr>
+	<form action="#" th:action="@{/logout}" method="POST">
+		<input type="submit" value="logout" />
+	</form>
+</body>
+
+</html>
