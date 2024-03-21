@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http:/www.thymleaf.org" xmlns="http://www.w3.org/1999/html">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>student form</title>
+</head>
+
+<body>
+	<h2>Student Registration form</h2>
+	<form th:action="@{/processStudentForm}" th:object="${student}" method="POST">
+
+		First name :<input type="text" th:field="*{firstName}" />
+		<!-- shortcut *{...} for ${student.firstname}-->
+		<br><br>
+		Last name :<input type="text" th:field="*{lastName}" />
+		<br><br>
+		<select th:field="*{country}">
+			<!--<option th:value="India">India</option>
+			<option th:value="Newzeland">Newzeland</option>
+			<option th:value="Srilanka">Srilanka</option>
+			<option th:value="southAfrica">SouthAfrica</option>
+			<option th:value="Australia">Australia</option>-->
+			<!--Instead of the above more code below code using @value-->
+			<option th:each="tempCountry : ${countries}" th:value="${tempCountry}" th:text="${tempCountry}" />
+		</select>
+		<br><br>
+		Favorite programming language :
+		<!--<input type="radio" th:field="*{favoriteLanguage}" th:value="C">C</input>
+		<input type="radio" th:field="*{favoriteLanguage}" th:value="Java">Java</input>
+		<input type="radio" th:field="*{favoriteLanguage}" th:value="Python">Python</input>-->
+		<input type="radio" th:field="*{favoriteLanguage}" th:each="templang : ${languages} " th:value="${templang}"
+			th:text="${templang}" />
+		<br><br>
+		Favourite Operating systems:
+		<!--<input type="checkbox" th:field="*{favoriteSystems}" th:value="linux">linux</input>
+	<input type="checkbox" th:field="*{favoriteSystems}" th:value="'Microsoft Windows'">Microsoft Windows</input>
+	<input type="checkbox" th:field="*{favoriteSystems}" th:value="Mac">Mac</input>-->
+		<input type="checkbox" th:field="*{favoriteSystems}" th:each="sys:${systems}" th:value="${sys}"
+			th:text="${sys}" />
+		<br><br>
+		<input type="submit" value="Submit" />
+	</form>
+</body>
+
+</html>
