@@ -1,0 +1,19 @@
+-----Dependencies added in these project-------
+1.spring web
+2.spring Data JPA
+3.Spring Boot Dev tools
+4.MYSQL Driver
+------------------------------------------------------
+Employee DAO-->Standard JPA API
+1.get list of employees
+2.get single employee by ID
+3.Add a new Employee
+4.Update an existing Employee
+5.Delete an existing Employee
+------------------------------------------------------
+Development process
+1.Update db configs in Application.properties
+2.Create Employee entity
+3.Create DAO interface
+4.Create DAO implementation
+5.Create REST controller to use DAO 
